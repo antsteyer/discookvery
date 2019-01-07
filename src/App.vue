@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-app>
-      <v-toolbar app></v-toolbar>
       <v-content>
         <v-container fluid>
           <router-view></router-view>
