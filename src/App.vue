@@ -29,10 +29,15 @@
 
 <script>
 import Hello from "./components/Hello";
+import json from "./assets/data.json";
 export default {
   name: "app",
   components: {
     Hello
+  },
+  mounted() {
+    console.log("Recipes", json);
+    this.$store.commit("recipes/setRecipes", json);
   }
 };
 </script>
