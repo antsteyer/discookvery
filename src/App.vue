@@ -9,7 +9,7 @@
       </v-content>
       <v-bottom-nav :value="true" absolute color="transparent">
         <v-btn color="teal" flat value="home" to="/">
-          <span>Acceuil</span>
+          <span>Accueil</span>
           <v-icon>home</v-icon>
         </v-btn>
 
