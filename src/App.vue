@@ -1,40 +1,19 @@
 <template>
   <div id="app">
-    <v-app>
-      <v-toolbar app></v-toolbar>
-      <v-content>
-        <v-container fluid>
-          <router-view></router-view>
-        </v-container>
-      </v-content>
-      <v-bottom-nav :value="true" absolute color="transparent">
-        <v-btn color="teal" flat value="home" to="/">
-          <span>Accueil</span>
-          <v-icon>home</v-icon>
-        </v-btn>
-
-        <v-btn color="teal" flat value="search" to="/search">
-          <span>Recherche</span>
-          <v-icon>search</v-icon>
-        </v-btn>
-
-        <v-btn color="teal" flat value="favorites" to="/favorites">
-          <span>Favoris</span>
-          <v-icon>favorite</v-icon>
-        </v-btn>
-      </v-bottom-nav>
-    </v-app>
+    <header>
+      <span>Vue.js PWA</span>
+    </header>
+    <main>
+      <img src="./assets/logo.png" alt="Vue.js PWA">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
 <script>
-import Hello from "./components/Hello";
 export default {
-  name: "app",
-  components: {
-    Hello
-  }
-};
+  name: 'app'
+}
 </script>
 
 <style>
@@ -43,7 +22,7 @@ body {
 }
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -58,7 +37,7 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495e;
+  background-color: #35495E;
   color: #ffffff;
 }
 
@@ -67,7 +46,7 @@ header span {
   position: relative;
   font-size: 20px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: .02em;
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
