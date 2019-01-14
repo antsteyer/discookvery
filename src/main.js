@@ -7,9 +7,9 @@ import store from './store'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
-Vue.use(Vuex)
-Vue.config.productionTip = false
+Vue.use(Vuetify);
+Vue.use(Vuex);
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
