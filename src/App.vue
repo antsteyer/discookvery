@@ -7,7 +7,7 @@
           <router-view></router-view>
         </v-container>
       </v-content>
-      <v-bottom-nav :value="true" absolute color="transparent">
+      <v-bottom-nav :value="true" fixed color="white">
         <v-btn color="teal" flat value="home" to="/">
           <span>Accueil</span>
           <v-icon>home</v-icon>
