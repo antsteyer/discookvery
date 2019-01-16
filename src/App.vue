@@ -6,7 +6,7 @@
           <router-view></router-view>
         </v-container>
       </v-content>
-      <v-bottom-nav :value="true" absolute color="transparent">
+      <v-bottom-nav :value="true" fixed color="white">
         <v-btn color="teal" flat value="home" to="/">
           <span>Accueil</span>
           <v-icon>home</v-icon>
@@ -28,10 +28,15 @@
 
 <script>
 import Hello from "./components/Hello";
+import json from "./assets/data.json";
 export default {
   name: "app",
   components: {
     Hello
+  },
+  mounted() {
+    console.log("Recipes", json);
+    this.$store.commit("recipes/setRecipes", json);
   }
 };
 </script>
