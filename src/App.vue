@@ -1,28 +1,30 @@
 <template>
   <div id="app">
     <v-app>
-      <v-toolbar app></v-toolbar>
+      <!-- <v-toolbar app></v-toolbar> -->
       <v-content>
         <v-container fluid>
           <router-view></router-view>
         </v-container>
       </v-content>
-      <v-bottom-nav :value="true" fixed color="white">
-        <v-btn color="teal" flat value="home" to="/">
-          <span>Accueil</span>
-          <v-icon>home</v-icon>
-        </v-btn>
+      <v-footer app height="fit-content">
+        <v-bottom-nav :value="true" color="white">
+          <v-btn color="teal" flat value="home" to="/">
+            <span>Accueil</span>
+            <v-icon>home</v-icon>
+          </v-btn>
 
-        <v-btn color="teal" flat value="search" to="/search">
-          <span>Recherche</span>
-          <v-icon>search</v-icon>
-        </v-btn>
+          <v-btn color="teal" flat value="search" to="/search">
+            <span>Recherche</span>
+            <v-icon>search</v-icon>
+          </v-btn>
 
-        <v-btn color="teal" flat value="favorites" to="/favorites">
-          <span>Favoris</span>
-          <v-icon>favorite</v-icon>
-        </v-btn>
-      </v-bottom-nav>
+          <v-btn color="teal" flat value="favorites" to="/favorites">
+            <span>Favoris</span>
+            <v-icon>favorite</v-icon>
+          </v-btn>
+        </v-bottom-nav>
+      </v-footer>
     </v-app>
   </div>
 </template>
