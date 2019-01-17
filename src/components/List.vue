@@ -33,8 +33,8 @@ export default {
 
 <template>
   <div>
-    <md-list class="md-triple-line" v-for="(item, index) in recipes">
-      <md-list-item v-bind:key="index">
+    <md-list class="md-triple-line">
+      <md-list-item v-bind:key="index" v-for="(item, index) in recipes" v-on:click="displayRecipe">
         <md-avatar>
           <img v-bind:src="item.image" alt="People">
         </md-avatar>
@@ -60,6 +60,11 @@ export default {
     computed: {
       recipes() {
         return this.$store.getters["recipes/getRecipes"];
+      }
+    },
+    methods: {
+      displayRecipe: () => {
+        console.log('Clicked!')
       }
     }
   }
