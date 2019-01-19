@@ -2,7 +2,7 @@
   <v-card>
     <v-list three-line>
       <template v-for="(item, index) in recipes">
-        <v-list-tile avatar :key="index">
+        <v-list-tile avatar :key="index" v-on:click="visualizeDetails(item)">
           <v-list-tile-avatar>
             <img :src="item.image" alt="People">
           </v-list-tile-avatar>
@@ -29,6 +29,17 @@ export default {
   computed: {
     recipes() {
       return this.$store.getters["recipes/getRecipes"];
+    }
+  },
+  methods: {
+    visualizeDetails(recipe) {
+      this.$router.push({ 
+        name: 'RecipeDetails',
+        params: {
+          id: recipe.id,
+          recipe: recipe 
+        }
+      });
     }
   }
 };

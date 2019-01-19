@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import List from '@/components/List'
 import RecipeHightlight from '@/components/RecipeHighlight';
+import Recipe from '@/components/Recipe';
 
 Vue.use(Router)
 
@@ -22,5 +23,10 @@ export default new Router({
       path: '/favorites',
       name: 'Favorites',
       component: Hello
-    }]
+    },
+  {
+    path: '/details/:id',
+    name: 'RecipeDetails',
+    component: Recipe
+  }]
 })

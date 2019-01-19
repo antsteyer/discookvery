@@ -16,7 +16,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon v-on:click="visualizeDetails()">
             <v-icon>arrow_forward</v-icon>
           </v-btn>
         </v-card-actions>
@@ -40,6 +40,15 @@ export default {
   methods: {
     getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
+    },
+    visualizeDetails() {
+      this.$router.push({ 
+        name: 'RecipeDetails',
+        params: {
+          id: this.firstRecipe.id,
+          recipe: this.firstRecipe 
+        }
+      });
     }
   }
 };
