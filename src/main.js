@@ -10,7 +10,7 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
-
+export const eventBus = new Vue();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

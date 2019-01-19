@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <ResearchBar v-on:search="refreshList"/>
-    <List/>
+    <List @refresh/>
   </v-container>
 </template>
 

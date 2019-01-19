@@ -33,6 +33,7 @@
 </template>
 
 <script>
+  import {eventBus} from "../main";
   export default {
     name: 'ResearchBar',
     data () {
@@ -98,6 +99,7 @@
       searchForResults() {
         let criterion = this.nameSelected ? 'name' : this.countrySelected ? 'country' : 'ingredient';
         this.$emit("search", this.researchValue, criterion);
+        eventBus.$emit("searchByCountryOrRegion", this.researchValue, criterion);
       }
     }
   }

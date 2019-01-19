@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-list three-line>
-      <template v-for="(item, index) in recipes">
+      {{result()}}
+      <template v-for="(item, index) in results">
         <v-list-tile avatar :key="index" v-on:click="visualizeDetails(item)">
           <v-list-tile-avatar>
             <img :src="item.image" alt="People">
@@ -24,29 +25,52 @@
 </template>
 
 <script>
-export default {
-  name: "List",
-  computed: {
-    recipes() {
-      return this.$store.getters["recipes/getRecipes"];
-    }
-  },
-  methods: {
-    visualizeDetails(recipe) {
-      this.$router.push({
-        name: 'RecipeDetails',
-        params: {
-          id: recipe.id,
-          recipe: recipe
-        }
+  import {eventBus} from "../main";
+
+  export default {
+
+    name: "List",
+    computed: {
+      recipes() {
+        return this.$store.getters["recipes/getRecipes"];
+      }
+    },
+    created() {
+      eventBus.$on('searchByCountryOrRegion', (message, criteria) => {
+        console.log('hello:', message, criteria);
+        //this.results = this.$store.getters["recipes/getRecipes"].filter(data => data.name.includes(search));
       });
+      eventBus.$on('searchByName', (message) => {
+        this.frombrother = message;
+      });
+      eventBus.$on('searchByOther', (message) => {
+        this.frombrother = message;
+      });
+    },
+    data: function () {
+      return {
+        results: []
+      }
+    },
+    methods: {
+      result() {
+        this.results = this.$store.getters["recipes/getRecipes"];
+      },
+      visualizeDetails(recipe) {
+        this.$router.push({
+          name: 'RecipeDetails',
+          params: {
+            id: recipe.id,
+            recipe: recipe
+          }
+        });
+      }
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
-.v-icon {
-  margin-right: 5px;
-}
+  .v-icon {
+    margin-right: 5px;
+  }
 </style>
