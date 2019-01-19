@@ -33,11 +33,11 @@ export default {
   },
   methods: {
     visualizeDetails(recipe) {
-      this.$router.push({ 
+      this.$router.push({
         name: 'RecipeDetails',
         params: {
           id: recipe.id,
-          recipe: recipe 
+          recipe: recipe
         }
       });
     }

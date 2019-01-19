@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import List from '@/components/List'
+import Research from '@/components/Research'
 import RecipeHightlight from '@/components/RecipeHighlight';
 import Recipe from '@/components/Recipe';
 
@@ -16,8 +17,8 @@ export default new Router({
     },
     {
       path: '/search',
-      name: "Search",
-      component: List
+      name: 'Search',
+      component: Research // List
     },
     {
       path: '/favorites',

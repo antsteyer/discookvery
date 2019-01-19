@@ -76,7 +76,7 @@
               <v-card>
                 <v-card-text>
                   <v-list>
-                    <template v-for="(item, index) in recipe.utensil">
+                    <template v-for="(item, index) in recipe.utensils">
                       <v-list-tile :key="index">
                         <v-list-tile-content>
                           <v-list-tile-title>{{item}}</v-list-tile-title>
