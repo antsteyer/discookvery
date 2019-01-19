@@ -57,4 +57,8 @@ export default {
 .v-card__text {
   text-align: left;
 }
+
+.v-card__title div {
+  text-align: left;
+}
 </style>
