@@ -57,7 +57,6 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
 }
 
 header {
@@ -76,6 +75,5 @@ header span {
   letter-spacing: 0.02em;
   font-weight: 400;
   box-sizing: border-box;
-  padding-top: 16px;
 }
 </style>
