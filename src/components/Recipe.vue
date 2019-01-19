@@ -11,27 +11,29 @@
           </div>
         </div>
       </v-card-title>
+
+      <center>
+        <v-chip color="indigo" text-color="white" :small="true">
+          <v-avatar>
+            <v-icon>account_circle</v-icon>
+          </v-avatar>
+          {{recipe.author}}
+        </v-chip>
+        <v-chip color="indigo" text-color="white" :small="true">
+          <v-avatar>
+            <v-icon>alarm</v-icon>
+          </v-avatar>
+          {{recipe.total_time}}
+        </v-chip>
+        <v-chip color="indigo" text-color="white" :small="true">
+          <v-avatar>
+            <v-icon>face</v-icon>
+          </v-avatar>
+          {{recipe.people_quantity}} pers.
+        </v-chip>
+      </center>
+
       <v-card-text>
-        <v-layout align-center justify-center row>
-          <v-chip color="indigo" text-color="white" :small="true">
-            <v-avatar>
-              <v-icon>account_circle</v-icon>
-            </v-avatar>
-            {{recipe.author}}
-          </v-chip>
-          <v-chip color="indigo" text-color="white" :small="true">
-            <v-avatar>
-              <v-icon>alarm</v-icon>
-            </v-avatar>
-            {{recipe.total_time}}
-          </v-chip>
-          <v-chip color="indigo" text-color="white" :small="true">
-            <v-avatar>
-              <v-icon>face</v-icon>
-            </v-avatar>
-            {{recipe.people_quantity}} pers.
-          </v-chip>
-        </v-layout>
         <template v-for="(item, index) in recipe.tags">
           <v-chip :key="index" label outline color="blue" :small="true">{{item}}</v-chip>
         </template>
@@ -41,7 +43,12 @@
         </div>
         <v-expansion-panel popout>
           <v-expansion-panel-content>
-            <div slot="header" class="expansion-panel-title">Ingredients</div>
+            <div slot="header" class="expansion-panel-title">
+              <v-layout row align-center>
+                <v-icon small>kitchen</v-icon>
+                <span>Ingredients</span>
+              </v-layout>
+            </div>
             <v-card>
               <v-card-text>
                 <v-list>
@@ -59,7 +66,12 @@
         </v-expansion-panel>
         <v-expansion-panel popout>
           <v-expansion-panel-content>
-            <div slot="header" class="expansion-panel-title">Ustensiles</div>
+            <div slot="header" class="expansion-panel-title">
+              <v-layout row align-center>
+                <v-icon small>local_dining</v-icon>
+                <span>Ustensiles</span>
+              </v-layout>
+            </div>
             <v-card>
               <v-card-text>
                 <v-list>
@@ -77,7 +89,12 @@
         </v-expansion-panel>
         <v-expansion-panel popout>
           <v-expansion-panel-content>
-            <div slot="header" class="expansion-panel-title">Etapes</div>
+            <div slot="header" class="expansion-panel-title">
+              <v-layout row align-center>
+                <v-icon small>format_list_numbered</v-icon>
+                <span>Étapes</span>
+              </v-layout>
+            </div>
             <ol>
               <li v-for="(item, index) in recipe.steps" :key="index">{{item}}</li>
             </ol>
@@ -150,5 +167,13 @@ ol {
 .expansion-panel-title {
   font-size: 21px;
   font-style: oblique;
+}
+
+.expansion-panel-title .v-icon {
+  margin-right: 5px;
+}
+
+.expansion-panel-title .layout {
+  margin-bottom: 0;
 }
 </style>
