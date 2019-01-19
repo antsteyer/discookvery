@@ -19,10 +19,10 @@
             <v-icon>search</v-icon>
           </v-btn>
 
-          <v-btn color="teal" flat value="favorites" to="/favorites">
+          <!-- <v-btn color="teal" flat value="favorites" to="/favorites">
             <span>Favoris</span>
             <v-icon>favorite</v-icon>
-          </v-btn>
+          </v-btn>-->
         </v-bottom-nav>
       </v-footer>
     </v-app>
