@@ -58,9 +58,15 @@ export default {
           return r.name.toLowerCase().includes(value.toLowerCase());
         }
         if (criterion === "ingredient") {
-          return r.ingredients
-            .map(i => i.toLowerCase())
-            .includes(value.toLowerCase());
+          let includesValue = false;
+          r.ingredients.forEach(i => {
+            const ing = i.toLowerCase();
+            if (ing.includes(value.toLowerCase())) {
+              includesValue = true;
+              return;
+            }
+          });
+          return includesValue;
         }
       });
       console.log("list filtered", this.results);
