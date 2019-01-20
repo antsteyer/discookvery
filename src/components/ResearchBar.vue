@@ -36,7 +36,7 @@
       hide-no-data
     >
       <template v-if="countrySelected" slot="item" slot-scope="{ item }">
-        <flag style="border-style: solid; border-color: lightslategrey; border-width: 2px" :iso="isoFromCountry(item)"/>
+        <flag class="flagIcon" :iso="isoFromCountry(item)"/>
         <span class="pr-2">{{ item}}</span>
       </template>
     </v-combobox>
@@ -169,6 +169,11 @@
 <style scoped>
   .flag-icon {
     margin-right: 10px;
+  }
+  .flagIcon {
+    border-style: solid;
+    border-color: lightslategrey;
+    border-width: 2px
   }
 </style>
 
