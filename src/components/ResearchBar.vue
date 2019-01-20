@@ -30,7 +30,7 @@
       :placeholder="placeholder"
       append-icon="search"
       v-model="researchValue"
-      @input="searchForResults"
+      :search-input.sync="searchForResults"
       :items="getItems()"
       hide-no-data
     ></v-combobox>
@@ -49,7 +49,8 @@ export default {
       placeholder: "nom",
       searchFieldDisabled: false,
       searchLabel: "Choisissez un critère",
-      researchValue: ""
+      researchValue: "",
+      searchForResults: null
     };
   },
   computed: {
@@ -110,15 +111,7 @@ export default {
           this.placeholder = "";
       }
     },
-    searchForResults() {
-      let criterion = this.nameSelected
-        ? "name"
-        : this.countrySelected
-        ? "country"
-        : "ingredient";
-      console.log("searchForResults", this.researchValue, criterion);
-      this.$emit("search", this.researchValue, criterion);
-    },
+
     getCountriesAndRegions() {
       const recipes = this.$store.getters["recipes/getRecipes"];
       return recipes
@@ -129,6 +122,18 @@ export default {
       return this.nameSelected || this.ingredientsSelected
         ? []
         : this.getCountriesAndRegions();
+    }
+  },
+  watch: {
+    searchForResults(val) {
+      this.researchValue = val;
+      let criterion = this.nameSelected
+        ? "name"
+        : this.countrySelected
+        ? "country"
+        : "ingredient";
+      console.log("searchForResults", this.researchValue, criterion);
+      this.$emit("search", this.researchValue, criterion);
     }
   }
 };
