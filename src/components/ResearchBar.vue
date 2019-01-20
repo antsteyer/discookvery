@@ -20,7 +20,7 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-text-field
+    <v-autocomplete
       :disabled="searchFieldDisabled"
       outline
       :label="searchLabel"
@@ -28,7 +28,9 @@
       append-icon="search"
       v-model="researchValue"
       @input="searchForResults"
-    ></v-text-field>
+      :items="getItems()"
+      hide-no-data
+    ></v-autocomplete>
   </v-container>
 </template>
 
@@ -39,10 +41,10 @@
     data () {
       return {
         countrySelected: false,
-        nameSelected: false,
+        nameSelected: true,
         ingredientsSelected: false,
-        placeholder: '',
-        searchFieldDisabled: true,
+        placeholder: 'nom',
+        searchFieldDisabled: false,
         searchLabel: 'Choisissez un critère',
         researchValue: ''
       }
@@ -101,6 +103,13 @@
         let criterion = this.nameSelected ? 'name' : this.countrySelected ? 'country' : 'ingredient';
         this.$emit("search", this.researchValue, criterion);
         eventBus.$emit("searchByCountryOrRegion", this.researchValue, criterion);
+      },
+      getCountriesAndRegions() {
+        const recipes = this.$store.getters["recipes/getRecipes"];
+        return recipes.map((recipe) => recipe.country).concat(recipes.map((recipe) => recipe.region));
+      },
+      getItems() {
+        return this.nameSelected || this.ingredientsSelected ? [] : this.getCountriesAndRegions();
       }
     }
   }
