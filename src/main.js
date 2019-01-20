@@ -7,6 +7,8 @@ import store from './store'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import FlagIcon from "vue-flag-icon"
+Vue.use(FlagIcon)
 Vue.use(Vuetify);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
