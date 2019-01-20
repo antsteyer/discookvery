@@ -8,7 +8,7 @@
         <v-card-title>
           <div>
             <h3>{{firstRecipe.name}}</h3>
-            <span>{{firstRecipe.country}}, {{firstRecipe.region}}</span>
+            <span>{{firstRecipe.country}}{{firstRecipe.region ? `, ${firstRecipe.region}` : '' }}</span>
           </div>
         </v-card-title>
 

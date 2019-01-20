@@ -6,7 +6,9 @@
         <v-card-title primary-title>
           <div class="card-header">
             <h3 class="headline">{{recipe.name}}</h3>
-            <h2 class="card-subtitle">{{recipe.region}}, {{recipe.country}}</h2>
+            <h2
+              class="card-subtitle"
+            >{{recipe.region ? `${recipe.region} ,` : ''}} {{recipe.country}}</h2>
             <div class="text-xs-center">
               <v-rating v-model="rate"></v-rating>
             </div>
