@@ -33,7 +33,14 @@
       :search-input.sync="searchForResults"
       :items="getItems()"
       hide-no-data
-    ></v-combobox>
+    >
+      <template v-if="countrySelected" slot="item" slot-scope="{ item }">
+        <flag :iso="isoFromCountry(item)"/>
+        <span class="pr-2">{{ item}}</span>
+      </template>
+    </v-combobox>
+  </v-container>
+</template></v-combobox>
   </v-container>
 </template>
 
@@ -122,6 +129,15 @@ export default {
       return this.nameSelected || this.ingredientsSelected
         ? []
         : this.getCountriesAndRegions();
+    },
+    isoFromCountry(country) {
+      switch (country) {
+        case "France":
+          return "fr";
+
+        default:
+          return;
+      }
     }
   },
   watch: {
@@ -138,4 +154,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.flag-icon {
+  margin-right: 10px;
+}
+</style>
+
 
