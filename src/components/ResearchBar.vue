@@ -35,7 +35,7 @@
       hide-no-data
     >
       <template v-if="countrySelected" slot="item" slot-scope="{ item }">
-        <flag :iso="isoFromCountry(item)"/>
+        <flag style="border-style: solid; border-color: lightslategrey; border-width: 2px" :iso="isoFromCountry(item)"/>
         <span class="pr-2">{{ item}}</span>
       </template>
     </v-combobox>
@@ -48,7 +48,7 @@
 import { eventBus } from "../main";
 export default {
   name: "ResearchBar",
-  data() {
+  data () {
     return {
       countrySelected: false,
       nameSelected: true,
@@ -61,24 +61,24 @@ export default {
     };
   },
   computed: {
-    countryIconStyle() {
+    countryIconStyle () {
       return this.countrySelected
         ? "border-style: solid; border-radius: 5px; padding: 10%; background-color: lightgrey;border-color: #157e0d;"
         : "border-style: solid; border-radius: 5px; padding: 10%;";
     },
-    nameIconStyle() {
+    nameIconStyle () {
       return this.nameSelected
         ? "border-style: solid; border-radius: 5px; padding: 10%; background-color: lightgrey;border-color: #157e0d;"
         : "border-style: solid; border-radius: 5px; padding: 10%;";
     },
-    ingredientsIconStyle() {
+    ingredientsIconStyle () {
       return this.ingredientsSelected
         ? "border-style: solid; border-radius: 5px; padding: 10%; background-color: lightgrey;border-color: #157e0d;"
         : "border-style: solid; border-radius: 5px; padding: 10%";
     }
   },
   methods: {
-    iconClick(variableName) {
+    iconClick (variableName) {
       let selected = this[variableName];
       this[variableName] = !this[variableName];
       this.searchFieldDisabled = selected;
@@ -125,7 +125,7 @@ export default {
         .map(recipe => recipe.country)
         .concat(recipes.map(recipe => recipe.region));
     },
-    getItems() {
+    getItems () {
       return this.nameSelected || this.ingredientsSelected
         ? []
         : this.getCountriesAndRegions();
@@ -134,7 +134,10 @@ export default {
       switch (country) {
         case "France":
           return "fr";
-
+        case "Etats-Unis":
+          return "us";
+        case "Japon":
+          return "jp";
         default:
           return;
       }
@@ -152,7 +155,7 @@ export default {
       this.$emit("search", this.researchValue, criterion);
     }
   }
-};
+}
 </script>
 
 <style scoped>
