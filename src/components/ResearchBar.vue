@@ -26,7 +26,7 @@
       :label="searchLabel"
       :placeholder="placeholder"
       append-icon="search"
-      :v-model="researchValue"
+      v-model="researchValue"
       @input="searchForResults"
     ></v-text-field>
   </v-container>
@@ -62,7 +62,8 @@
       iconClick (variableName) {
         let selected = this[variableName]
         this[variableName] = !this[variableName]
-        this.searchFieldDisabled = !this.searchFieldDisabled
+        this.searchFieldDisabled = selected;
+        this.researchValue = '';
         this.searchLabel === 'Choisissez un critère' ? this.searchLabel = "Entrez votre recherche" : this.searchLabel = "Choisissez un critère"
         switch (variableName) {
           case 'countrySelected' :
