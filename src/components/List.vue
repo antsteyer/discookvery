@@ -32,18 +32,6 @@ export default {
       return this.$store.getters["recipes/getRecipes"];
     }
   },
-  created() {
-    // eventBus.$on("searchByCountryOrRegion", (message, criteria) => {
-    //   console.log("hello:", message, criteria);
-    //   //this.results = this.$store.getters["recipes/getRecipes"].filter(data => data.name.includes(search));
-    // });
-    // eventBus.$on("searchByName", message => {
-    //   this.frombrother = message;
-    // });
-    // eventBus.$on("searchByOther", message => {
-    //   this.frombrother = message;
-    // });
-  },
   data: function() {
     return {
       results: this.recipes || []
@@ -57,6 +45,7 @@ export default {
       this.results = this.$store.getters["recipes/getRecipes"];
     },
     filterList(value, criterion) {
+      if (!value || !criterion) return;
       console.log("Filter in List", value, criterion);
       this.results = this.recipes.filter(r => {
         if (criterion === "country") {
