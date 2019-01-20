@@ -42,11 +42,11 @@ export default {
       return Math.floor(Math.random() * Math.floor(max));
     },
     visualizeDetails() {
-      this.$router.push({ 
-        name: 'RecipeDetails',
+      this.$router.push({
+        name: "RecipeDetails",
         params: {
           id: this.firstRecipe.id,
-          recipe: this.firstRecipe 
+          recipe: this.firstRecipe
         }
       });
     }
@@ -56,6 +56,13 @@ export default {
 <style scoped>
 .v-card__text {
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px; /* fallback */
+  max-height: 80px; /* fallback */
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .v-card__title div {
