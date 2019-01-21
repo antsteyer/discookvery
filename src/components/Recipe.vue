@@ -1,7 +1,7 @@
 <template>
   <v-layout id="recipeLayout">
     <v-flex xs12 sm6 offset-sm3>
-      <v-card :elevation="6" :tile="false">
+      <v-card :elevation="6" :tile="false" v-if="recipe">
         <v-img :src="recipe.image"></v-img>
         <v-card-title primary-title>
           <div class="card-header">
@@ -123,6 +123,7 @@ export default {
     this.recipe = this.$route.params.recipe;
     if (!this.recipe) {
       this.$router.go(-1);
+      return;
     }
     this.rate = Number(this.recipe.rate);
   }
