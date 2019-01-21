@@ -69,7 +69,7 @@
               </v-card>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel popout>
+          <v-expansion-panel popout v-if="recipe.utensils">
             <v-expansion-panel-content>
               <div slot="header" class="expansion-panel-title">
                 <v-layout row align-center>
