@@ -42,6 +42,7 @@
       item-value="value"
       item-text="value"
       return-object
+      :hint="`${numberOfResults} résulat(s)`"
     >
       <template v-if="countrySelected" slot="item" slot-scope="{ item }">
         <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
@@ -57,6 +58,12 @@ import { eventBus } from "../main";
 
 export default {
   name: "ResearchBar",
+  props: {
+    numberOfResults: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       countrySelected: false,

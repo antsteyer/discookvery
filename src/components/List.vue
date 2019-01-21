@@ -40,6 +40,7 @@ export default {
   },
   mounted() {
     this.results = this.recipes;
+    this.$emit("numberOfResults", this.results.length);
   },
   methods: {
     result() {
@@ -71,6 +72,7 @@ export default {
         }
       });
       console.log("list filtered", this.results);
+      this.$emit("numberOfResults", this.results.length);
     },
     visualizeDetails(recipe) {
       this.$router.push({
