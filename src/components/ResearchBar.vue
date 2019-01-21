@@ -31,7 +31,7 @@
         </v-flex>
       </v-layout>
     </v-slide-y-transition>
-    <v-layout row align-center justify-center>
+    <v-layout row align-start justify-center>
       <v-combobox
         :disabled="searchFieldDisabled"
         outline
@@ -46,7 +46,6 @@
         item-text="value"
         return-object
         :hint="`${numberOfResults} résulat(s)`"
-        hide-details
       >
         <template v-if="countrySelected" slot="item" slot-scope="{ item }">
           <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
@@ -54,7 +53,7 @@
           <span class="isCountryOrRegion">{{item.isCountry ? ' (pays)' : ' (région)'}}</span>
         </template>
       </v-combobox>
-      <v-btn icon @click="onFilterClicked">
+      <v-btn class="buttonHideFilter" icon @click="onFilterClicked">
         <v-icon>{{!showFilters ? 'filter_list': 'close'}}</v-icon>
       </v-btn>
     </v-layout>
@@ -188,7 +187,7 @@ export default {
         case "Mexique":
           return "mx";
         case "Chine":
-          return "cn"
+          return "cn";
         default:
           return;
       }
@@ -234,6 +233,10 @@ export default {
 .container {
   padding: 16px !important;
   height: fit-content;
+}
+
+.buttonHideFilter {
+  top: 5px;
 }
 </style>
 
