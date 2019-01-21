@@ -1,8 +1,10 @@
 <template>
-  <v-container>
-    <ResearchBar v-on:search="refreshList"/>
-    <List ref="recipeList"/>
-  </v-container>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <ResearchBar v-on:search="refreshList"/>
+      <List ref="recipeList"/>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

@@ -3,23 +3,29 @@
     <v-layout row justify-space-between>
       <v-flex xs4>
         <v-container>
-          <v-icon v-on:click="iconClick('nameSelected')" :style="nameIconStyle">import_contacts</v-icon>
-          <v-label>Par nom</v-label>
+          <v-layout column>
+            <v-icon v-on:click="iconClick('nameSelected')" :style="nameIconStyle">import_contacts</v-icon>
+            <v-label>Par nom</v-label>
+          </v-layout>
         </v-container>
       </v-flex>
       <v-flex xs4>
         <v-container>
-          <v-icon v-on:click="iconClick('countrySelected')" :style="countryIconStyle">flag</v-icon>
-          <v-label>Par pays ou région</v-label>
+          <v-layout column>
+            <v-icon v-on:click="iconClick('countrySelected')" :style="countryIconStyle">flag</v-icon>
+            <v-label>Par pays ou région</v-label>
+          </v-layout>
         </v-container>
       </v-flex>
       <v-flex xs4>
         <v-container>
-          <v-icon
-            v-on:click="iconClick('ingredientsSelected')"
-            :style="ingredientsIconStyle"
-          >shopping_basket</v-icon>
-          <v-label>Par ingrédient</v-label>
+          <v-layout column>
+            <v-icon
+              v-on:click="iconClick('ingredientsSelected')"
+              :style="ingredientsIconStyle"
+            >shopping_basket</v-icon>
+            <v-label>Par ingrédient</v-label>
+          </v-layout>
         </v-container>
       </v-flex>
     </v-layout>
@@ -195,6 +201,10 @@ export default {
 
 .isCountryOrRegion {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.layout .v-label {
+  margin-top: 5px;
 }
 </style>
 
