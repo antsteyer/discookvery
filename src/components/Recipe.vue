@@ -2,7 +2,17 @@
   <v-layout id="recipeLayout">
     <v-flex xs12 sm6 offset-sm3>
       <v-card :elevation="6" :tile="false" v-if="recipe">
-        <v-img :src="recipe.image"></v-img>
+        <v-img :src="recipe.image">
+          <v-container fill-height fluid>
+            <v-layout fill-height>
+              <v-flex xs12 align-start flexbox>
+                <v-btn @click="onBackClicked" flat class="backButton white--text">
+                  <v-icon left dark>arrow_back</v-icon>Retour
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-img>
         <v-card-title primary-title>
           <div class="card-header">
             <h3 class="headline">{{recipe.name}}</h3>
@@ -126,12 +136,21 @@ export default {
       return;
     }
     this.rate = Number(this.recipe.rate);
+  },
+  methods: {
+    onBackClicked() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>
 
 
 <style scoped>
+.backButton {
+  margin-left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 #recipeLayout {
   margin-bottom: 0 !important;
   height: 100%;
@@ -139,6 +158,7 @@ export default {
 
 .v-card {
   text-align: left;
+  height: 100%;
 }
 
 .headline {
