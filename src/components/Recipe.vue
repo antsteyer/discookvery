@@ -5,7 +5,7 @@
         <v-icon dark>arrow_back</v-icon>
       </v-btn>
       <v-card :elevation="6" :tile="false" v-if="recipe">
-        <v-img :src="recipe.image"></v-img>
+        <v-img :src="recipe.image || '../../static/img/placeholder.gif'"></v-img>
         <v-card-title primary-title>
           <div class="card-header">
             <h3 class="headline">{{recipe.name}}</h3>
