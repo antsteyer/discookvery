@@ -78,6 +78,15 @@ export default {
       default: 0
     }
   },
+  mounted() {
+    if (this.lastResearch) {
+      this.researchValue = this.lastResearch.val;
+      (this.nameSelected = this.lastResearch.nameSelected),
+        (this.ingredientsSelected = this.lastResearch.ingredientsSelected),
+        (this.countrySelected = this.lastResearch.countrySelected);
+      this.$emit("search", this.researchValue, this.lastResearch.criterion);
+    }
+  },
   data() {
     return {
       countrySelected: false,
@@ -106,6 +115,9 @@ export default {
       return this.ingredientsSelected
         ? "border-style: solid; border-radius: 5px; padding: 10%; background-color: lightgrey;border-color: #157e0d;"
         : "border-style: solid; border-radius: 5px; padding: 10%";
+    },
+    lastResearch() {
+      return this.$store.getters["recipes/getLastResearch"];
     }
   },
   methods: {
@@ -217,6 +229,13 @@ export default {
         ? "country"
         : "ingredient";
       console.log("searchForResults", this.researchValue, criterion);
+      this.$store.commit("recipes/setLastResearch", {
+        val: this.researchValue,
+        criterion: criterion,
+        nameSelected: this.nameSelected,
+        ingredientsSelected: this.ingredientsSelected,
+        countrySelected: this.countrySelected
+      });
       this.$emit("search", this.researchValue, criterion);
     }
   }

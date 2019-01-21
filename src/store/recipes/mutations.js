@@ -27,5 +27,9 @@ export const mutations = {
    */
   addRecipe(state, payload) {
     state.recipes.push(payload);
+  },
+
+  setLastResearch(state, payload) {
+    state.lastResearch = payload
   }
 };

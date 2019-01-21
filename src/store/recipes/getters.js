@@ -8,4 +8,9 @@ export const getters = {
     const { recipes } = state;
     return recipes;
   },
+
+  getLastResearch(state) {
+    const { lastResearch } = state;
+    return lastResearch
+  }
 };

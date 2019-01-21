@@ -3,7 +3,8 @@ import { actions } from "./actions";
 import { mutations } from "./mutations";
 
 export const state = {
-  recipes: []
+  recipes: [],
+  lastResearch: null
 };
 
 const namespaced = true;

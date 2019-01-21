@@ -10,6 +10,7 @@
 <script>
 import ResearchBar from "./ResearchBar.vue";
 import List from "./List";
+
 export default {
   name: "Research",
   components: {
