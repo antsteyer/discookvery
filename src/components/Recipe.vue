@@ -121,6 +121,9 @@ export default {
   }),
   mounted() {
     this.recipe = this.$route.params.recipe;
+    if (!this.recipe) {
+      this.$router.go(-1);
+    }
     this.rate = Number(this.recipe.rate);
   }
 };
