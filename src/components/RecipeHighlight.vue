@@ -3,7 +3,7 @@
     <v-flex xs12 sm6 offset-sm3>
       <h1>Recette du moment</h1>
       <v-card v-if="firstRecipe">
-        <v-img :src="firstRecipe.image" aspect-ratio="2"></v-img>
+        <v-img v-if="firstRecipe.image" :src="firstRecipe.image" aspect-ratio="2"></v-img>
 
         <v-card-title>
           <div>
