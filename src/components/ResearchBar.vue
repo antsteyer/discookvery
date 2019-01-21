@@ -32,30 +32,37 @@
       </v-layout>
     </v-slide-y-transition>
     <v-layout row align-start justify-center>
-      <v-combobox
-        :disabled="searchFieldDisabled"
-        outline
-        :label="searchLabel"
-        :placeholder="placeholder"
-        append-icon="search"
-        v-model="researchValue"
-        :search-input.sync="searchForResults"
-        :items="getItems()"
-        hide-no-data
-        item-value="value"
-        item-text="value"
-        return-object
-        :hint="`${numberOfResults} résulat(s)`"
-      >
-        <template v-if="countrySelected" slot="item" slot-scope="{ item }">
-          <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
-          <span class="pr-2">{{ item.value}}</span>
-          <span class="isCountryOrRegion">{{item.isCountry ? ' (pays)' : ' (région)'}}</span>
-        </template>
-      </v-combobox>
-      <v-btn class="buttonHideFilter" icon @click="onFilterClicked">
-        <v-icon>{{!showFilters ? 'filter_list': 'close'}}</v-icon>
-      </v-btn>
+      <v-flex xs10>
+        <v-combobox
+          :disabled="searchFieldDisabled"
+          outline
+          :label="searchLabel"
+          :placeholder="placeholder"
+          append-icon="search"
+          v-model="researchValue"
+          :search-input.sync="searchForResults"
+          :items="getItems()"
+          hide-no-data
+          item-value="value"
+          item-text="value"
+          return-object
+          :hint="`${numberOfResults} résulat(s)`"
+        >
+          <template v-if="countrySelected" slot="item" slot-scope="{ item }">
+            <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
+            <span class="pr-2">{{ item.value}}</span>
+            <span class="isCountryOrRegion">{{item.isCountry ? ' (pays)' : ' (région)'}}</span>
+          </template>
+        </v-combobox>
+      </v-flex>
+      <v-flex xs2>
+        <v-layout column align-center>
+          <v-btn class="buttonHideFilter" icon @click="onFilterClicked">
+            <v-icon>{{!showFilters ? 'filter_list': 'close'}}</v-icon>
+          </v-btn>
+          <span>Filtres</span>
+        </v-layout>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -236,7 +243,7 @@ export default {
 }
 
 .buttonHideFilter {
-  top: 5px;
+  margin-bottom: 0;
 }
 </style>
 
