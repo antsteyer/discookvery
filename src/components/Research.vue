@@ -1,8 +1,8 @@
 <template>
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <ResearchBar v-on:search="refreshList"/>
-      <List ref="recipeList"/>
+      <ResearchBar v-on:search="refreshList" :numberOfResults="numberOfResults"/>
+      <List ref="recipeList" @numberOfResults="onNumberOfResults"/>
     </v-flex>
   </v-layout>
 </template>
@@ -16,9 +16,19 @@ export default {
     ResearchBar,
     List
   },
+  data() {
+    return {
+      numberOfResults: 0
+    };
+  },
   methods: {
     refreshList(value, criterion) {
       this.$refs.recipeList.filterList(value, criterion);
+    },
+    onNumberOfResults(number) {
+      if (number === this.numberOfResults) return;
+
+      this.numberOfResults = number;
     }
   }
 };
