@@ -1,10 +1,10 @@
 <template>
   <v-layout id="recipeLayout">
     <v-flex xs12 sm6 offset-sm3>
+      <v-btn fab fixed top left @click="onBackClicked" class="backButton">
+        <v-icon dark>arrow_back</v-icon>
+      </v-btn>
       <v-card :elevation="6" :tile="false" v-if="recipe">
-        <v-btn @click="onBackClicked" flat class="backButton">
-          <v-icon left dark>arrow_back</v-icon>Retour
-        </v-btn>
         <v-img :src="recipe.image"></v-img>
         <v-card-title primary-title>
           <div class="card-header">
@@ -140,6 +140,9 @@ export default {
 
 
 <style scoped>
+.backButton {
+  background-color: lightgray;
+}
 #recipeLayout {
   margin-bottom: 0 !important;
   height: 100%;
