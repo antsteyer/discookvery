@@ -206,6 +206,11 @@ export default {
 .layout .v-label {
   margin-top: 5px;
 }
+
+.container {
+  padding: 16px !important;
+  height: fit-content;
+}
 </style>
 
 
