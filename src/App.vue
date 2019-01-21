@@ -7,7 +7,7 @@
           <router-view></router-view>
         </v-container>
       </v-content>
-      <v-footer app height="fit-content">
+      <v-footer fixed app height="fit-content">
         <v-bottom-nav :value="true" color="white">
           <v-btn color="teal" flat value="home" to="/">
             <span>Accueil</span>
@@ -44,6 +44,10 @@ export default {
 </script>
 
 <style>
+.container {
+  padding: 0 !important;
+  height: 100%;
+}
 body {
   margin: 0;
 }

@@ -68,4 +68,8 @@ export default {
 .v-card__title div {
   text-align: left;
 }
+
+.layout {
+  margin: 16px;
+}
 </style>

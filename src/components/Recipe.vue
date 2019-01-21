@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout id="recipeLayout">
     <v-flex xs12 sm6 offset-sm3>
       <v-card :elevation="6" :tile="false">
         <v-img :src="recipe.image"></v-img>
@@ -128,6 +128,11 @@ export default {
 
 
 <style scoped>
+#recipeLayout {
+  margin-bottom: 0 !important;
+  height: 100%;
+}
+
 .v-card {
   text-align: left;
 }
