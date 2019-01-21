@@ -12,7 +12,7 @@
             <v-list-tile-sub-title>{{item.country}}{{item.region ? `, ${item.region}`: ''}}</v-list-tile-sub-title>
             <v-layout row align-center>
               <v-icon small>star</v-icon>
-              <span>{{item.rate}}</span>
+              <span>{{item.rate || 'Pas de note'}}</span>
             </v-layout>
           </v-list-tile-content>
         </v-list-tile>
