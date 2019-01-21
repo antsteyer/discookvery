@@ -37,9 +37,11 @@
         </center>
 
         <v-card-text>
-          <template v-for="(item, index) in recipe.tags">
-            <v-chip :key="index" label outline color="blue" :small="true">{{item}}</v-chip>
-          </template>
+          <center>
+            <template v-for="(item, index) in recipe.tags">
+              <v-chip :key="index" label outline color="blue" :small="true">{{item}}</v-chip>
+            </template>
+          </center>
           <div class="history" v-if="recipe.history">
             <h2>Histoire de la recette</h2>
             <p>{{recipe.history}}</p>
