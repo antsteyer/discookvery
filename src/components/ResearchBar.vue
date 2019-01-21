@@ -165,7 +165,7 @@ export default {
           return "fr";
         case "Corse":
           return "fr";
-        case "Ile de France":
+        case "Ile de france":
           return "fr";
         case "Normandie":
           return "fr";
@@ -175,6 +175,10 @@ export default {
           return "us";
         case "Japon":
           return "jp";
+        case "Mexique":
+          return "mx";
+        case "Chine":
+          return "cn"
         default:
           return;
       }
