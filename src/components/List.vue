@@ -4,7 +4,8 @@
       <template v-for="(item, index) in results">
         <v-list-tile avatar :key="index" v-on:click="visualizeDetails(item)">
           <v-list-tile-avatar>
-            <img :src="item.image" alt="People">
+            <img v-if="item.image" :src="item.image" alt="People">
+            <v-icon class="placeholderAvatar" v-else>insert_photo</v-icon>
           </v-list-tile-avatar>
 
           <v-list-tile-content>
@@ -87,5 +88,10 @@ export default {
 <style scoped>
 .v-icon {
   margin-right: 5px;
+}
+
+.placeholderAvatar {
+  background-color: lightgrey;
+  margin-right: 0;
 }
 </style>
