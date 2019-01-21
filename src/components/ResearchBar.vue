@@ -1,55 +1,63 @@
 <template>
   <v-container>
-    <v-layout row justify-space-between>
-      <v-flex xs4>
-        <v-container>
-          <v-layout column>
-            <v-icon v-on:click="iconClick('nameSelected')" :style="nameIconStyle">import_contacts</v-icon>
-            <v-label>Par nom</v-label>
-          </v-layout>
-        </v-container>
-      </v-flex>
-      <v-flex xs4>
-        <v-container>
-          <v-layout column>
-            <v-icon v-on:click="iconClick('countrySelected')" :style="countryIconStyle">flag</v-icon>
-            <v-label>Par pays ou région</v-label>
-          </v-layout>
-        </v-container>
-      </v-flex>
-      <v-flex xs4>
-        <v-container>
-          <v-layout column>
-            <v-icon
-              v-on:click="iconClick('ingredientsSelected')"
-              :style="ingredientsIconStyle"
-            >shopping_basket</v-icon>
-            <v-label>Par ingrédient</v-label>
-          </v-layout>
-        </v-container>
-      </v-flex>
+    <v-slide-y-transition>
+      <v-layout v-if="showFilters" row justify-space-between>
+        <v-flex xs4>
+          <v-container>
+            <v-layout column>
+              <v-icon v-on:click="iconClick('nameSelected')" :style="nameIconStyle">import_contacts</v-icon>
+              <v-label>Par nom</v-label>
+            </v-layout>
+          </v-container>
+        </v-flex>
+        <v-flex xs4>
+          <v-container>
+            <v-layout column>
+              <v-icon v-on:click="iconClick('countrySelected')" :style="countryIconStyle">flag</v-icon>
+              <v-label>Par pays ou région</v-label>
+            </v-layout>
+          </v-container>
+        </v-flex>
+        <v-flex xs4>
+          <v-container>
+            <v-layout column>
+              <v-icon
+                v-on:click="iconClick('ingredientsSelected')"
+                :style="ingredientsIconStyle"
+              >shopping_basket</v-icon>
+              <v-label>Par ingrédient</v-label>
+            </v-layout>
+          </v-container>
+        </v-flex>
+      </v-layout>
+    </v-slide-y-transition>
+    <v-layout row align-center justify-center>
+      <v-combobox
+        :disabled="searchFieldDisabled"
+        outline
+        :label="searchLabel"
+        :placeholder="placeholder"
+        append-icon="search"
+        v-model="researchValue"
+        :search-input.sync="searchForResults"
+        :items="getItems()"
+        hide-no-data
+        item-value="value"
+        item-text="value"
+        return-object
+        :hint="`${numberOfResults} résulat(s)`"
+        hide-details
+      >
+        <template v-if="countrySelected" slot="item" slot-scope="{ item }">
+          <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
+          <span class="pr-2">{{ item.value}}</span>
+          <span class="isCountryOrRegion">{{item.isCountry ? ' (pays)' : ' (région)'}}</span>
+        </template>
+      </v-combobox>
+      <v-btn icon @click="onFilterClicked">
+        <v-icon>{{!showFilters ? 'filter_list': 'close'}}</v-icon>
+      </v-btn>
     </v-layout>
-    <v-combobox
-      :disabled="searchFieldDisabled"
-      outline
-      :label="searchLabel"
-      :placeholder="placeholder"
-      append-icon="search"
-      v-model="researchValue"
-      :search-input.sync="searchForResults"
-      :items="getItems()"
-      hide-no-data
-      item-value="value"
-      item-text="value"
-      return-object
-      :hint="`${numberOfResults} résulat(s)`"
-    >
-      <template v-if="countrySelected" slot="item" slot-scope="{ item }">
-        <flag class="flagIcon" :squared="false" :iso="isoFromCountry(item.value)"/>
-        <span class="pr-2">{{ item.value}}</span>
-        <span class="isCountryOrRegion">{{item.isCountry ? ' (pays)' : ' (région)'}}</span>
-      </template>
-    </v-combobox>
   </v-container>
 </template>
 
@@ -73,7 +81,8 @@ export default {
       searchFieldDisabled: false,
       searchLabel: "Choisissez un critère",
       researchValue: "",
-      searchForResults: null
+      searchForResults: null,
+      showFilters: false
     };
   },
   computed: {
@@ -95,6 +104,7 @@ export default {
   },
   methods: {
     iconClick(variableName) {
+      this.showFilters = false;
       let selected = this[variableName];
       this[variableName] = !this[variableName];
       this.searchFieldDisabled = selected;
@@ -182,6 +192,9 @@ export default {
         default:
           return;
       }
+    },
+    onFilterClicked() {
+      this.showFilters = !this.showFilters;
     }
   },
   watch: {
