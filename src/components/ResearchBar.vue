@@ -207,6 +207,10 @@ export default {
           return "mx";
         case "Chine":
           return "cn";
+        case "Irlande":
+          return "ie";
+        case "Espagne":
+          return "es"
         default:
           return;
       }
