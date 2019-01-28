@@ -270,4 +270,11 @@ export default {
 }
 </style>
 
+<style>
+.v-select--is-menu-active .v-input__icon--append .v-icon {
+  -webkit-transform: none !important;
+  transform: none !important;
+}
+</style>
+
 
