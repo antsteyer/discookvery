@@ -122,8 +122,10 @@ export default {
   },
   methods: {
     iconClick(variableName) {
+      if (this[variableName]) return;
       this.showFilters = false;
       let selected = this[variableName];
+
       this[variableName] = !this[variableName];
       this.searchFieldDisabled = selected;
       this.researchValue = "";
@@ -210,7 +212,7 @@ export default {
         case "Irlande":
           return "ie";
         case "Espagne":
-          return "es"
+          return "es";
         default:
           return;
       }
