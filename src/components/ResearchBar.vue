@@ -174,13 +174,32 @@ export default {
             isCountry: true
           };
         })
+        .sort(function(a, b) {
+          if (a.value > b.value) {
+            return 1;
+          }
+          if (a.value < b.value) {
+            return -1;
+          }
+          return 0;
+        })
         .concat(
-          recipes.map(recipe => {
-            return {
-              value: recipe.region,
-              isCountry: false
-            };
-          })
+          recipes
+            .map(recipe => {
+              return {
+                value: recipe.region,
+                isCountry: false
+              };
+            })
+            .sort(function(a, b) {
+              if (a.value > b.value) {
+                return 1;
+              }
+              if (a.value < b.value) {
+                return -1;
+              }
+              return 0;
+            })
         )
         .filter(recipe => recipe.value);
     },
