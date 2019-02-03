@@ -5,6 +5,7 @@ import List from '@/components/List'
 import Research from '@/components/Research'
 import RecipeHightlight from '@/components/RecipeHighlight';
 import Recipe from '@/components/Recipe';
+import LogList from '@/components/LogList';
 
 Vue.use(Router)
 
@@ -25,9 +26,14 @@ export default new Router({
       name: 'Favorites',
       component: Hello
     },
-  {
-    path: '/details/:id',
-    name: 'RecipeDetails',
-    component: Recipe
-  }]
+    {
+      path: '/details/:id',
+      name: 'RecipeDetails',
+      component: Recipe
+    },
+    {
+      path: '/logs',
+      name: 'Logs',
+      component: LogList
+    }]
 })

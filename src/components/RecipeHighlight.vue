@@ -35,6 +35,11 @@ export default {
       const randomIndex = this.getRandomInt(recipes.length);
 
       return recipes[randomIndex];
+    },
+    logs() {
+      if (!localStorage.getItem("logs")) return;
+      const logs = JSON.parse(localStorage.getItem("logs"));
+      return logs;
     }
   },
   methods: {
@@ -42,6 +47,11 @@ export default {
       return Math.floor(Math.random() * Math.floor(max));
     },
     visualizeDetails() {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Recette du moment cliquée");
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
       this.$router.push({
         name: "RecipeDetails",
         params: {

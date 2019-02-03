@@ -9,12 +9,12 @@
       </v-content>
       <v-footer fixed app height="fit-content">
         <v-bottom-nav :value="true" color="white">
-          <v-btn color="teal" flat value="home" to="/">
+          <v-btn color="teal" flat value="home" to="/" @click="homeClicked">
             <span>Accueil</span>
             <v-icon>home</v-icon>
           </v-btn>
 
-          <v-btn color="teal" flat value="search" to="/search">
+          <v-btn color="teal" flat value="search" to="/search" @click="searchClicked">
             <span>Recherche</span>
             <v-icon>search</v-icon>
           </v-btn>
@@ -37,8 +37,51 @@ export default {
   components: {
     Hello
   },
+  computed: {
+    logs() {
+      if (!localStorage.getItem("logs")) return;
+      const logs = JSON.parse(localStorage.getItem("logs"));
+      return logs;
+    }
+  },
   mounted() {
+    if (localStorage.getItem("logs")) {
+      try {
+        let logs = JSON.parse(localStorage.getItem("logs"));
+        let newLog = [];
+        newLog.push(Date());
+        newLog.push("Lancement de l'application");
+        logs.push(newLog);
+        localStorage.setItem("logs", JSON.stringify(logs));
+      } catch (e) {
+        localStorage.removeItem("logs");
+      }
+    } else {
+      let newLog = [];
+      newLog.push(Date());
+      newLog.push("Lancement de l'application");
+      let logsArray = [];
+      logsArray.push(newLog);
+      localStorage.setItem("logs", JSON.stringify(logsArray));
+    }
+
     this.$store.commit("recipes/setRecipes", json);
+  },
+  methods: {
+    homeClicked() {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Boutton Acceuil cliqué");
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
+    },
+    searchClicked() {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Boutton Recherche cliqué");
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
+    }
   }
 };
 </script>

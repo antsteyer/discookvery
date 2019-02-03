@@ -31,6 +31,11 @@ export default {
   computed: {
     recipes() {
       return this.$store.getters["recipes/getRecipes"];
+    },
+    logs() {
+      if (!localStorage.getItem("logs")) return;
+      const logs = JSON.parse(localStorage.getItem("logs"));
+      return logs;
     }
   },
   data: function() {
@@ -71,10 +76,22 @@ export default {
           return includesValue;
         }
       });
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push(
+        "Liste de résultats filtrée : " + JSON.stringify(this.results)
+      );
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
       console.log("list filtered", this.results);
       this.$emit("numberOfResults", this.results.length);
     },
     visualizeDetails(recipe) {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Recette dans liste cliquée " + recipe.name);
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
       this.$router.push({
         name: "RecipeDetails",
         params: {

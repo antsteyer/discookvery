@@ -81,9 +81,21 @@ export default {
   mounted() {
     if (this.lastResearch) {
       this.researchValue = this.lastResearch.val;
-      (this.nameSelected = this.lastResearch.nameSelected),
-        (this.ingredientsSelected = this.lastResearch.ingredientsSelected),
-        (this.countrySelected = this.lastResearch.countrySelected);
+      this.nameSelected = this.lastResearch.nameSelected;
+      this.ingredientsSelected = this.lastResearch.ingredientsSelected;
+      this.countrySelected = this.lastResearch.countrySelected;
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push(
+        "Recherche précédente : " +
+          JSON.stringify({
+            value: this.researchValue,
+            criterion: this.lastResearch.criterion
+          })
+      );
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
+      this.$refs.recipeList.filterList(value, criterion);
       this.$emit("search", this.researchValue, this.lastResearch.criterion);
     }
   },
@@ -101,6 +113,11 @@ export default {
     };
   },
   computed: {
+    logs() {
+      if (!localStorage.getItem("logs")) return;
+      const logs = JSON.parse(localStorage.getItem("logs"));
+      return logs;
+    },
     countryIconStyle() {
       return this.countrySelected
         ? "border-style: solid; border-radius: 5px; padding: 10%; background-color: lightgrey;border-color: #157e0d;"
@@ -122,6 +139,12 @@ export default {
   },
   methods: {
     iconClick(variableName) {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Icone de filtre cliquée : " + variableName);
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
+
       if (this[variableName]) return;
       this.showFilters = false;
       let selected = this[variableName];
@@ -238,6 +261,12 @@ export default {
     },
     onFilterClicked() {
       this.showFilters = !this.showFilters;
+
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Filtres affichés : " + this.showFilters);
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
     }
   },
   watch: {
@@ -254,6 +283,14 @@ export default {
         ? "country"
         : "ingredient";
       console.log("searchForResults", this.researchValue, criterion);
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push(
+        "Utilisateur fait une recherche : " +
+          JSON.stringify({ value: this.researchValue, criterion: criterion })
+      );
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
       this.$store.commit("recipes/setLastResearch", {
         val: this.researchValue,
         criterion: criterion,

@@ -130,8 +130,20 @@ export default {
     }
     this.rate = Number(this.recipe.rate);
   },
+  computed: {
+    logs() {
+      if (!localStorage.getItem("logs")) return;
+      const logs = JSON.parse(localStorage.getItem("logs"));
+      return logs;
+    }
+  },
   methods: {
     onBackClicked() {
+      let logs = this.logs;
+      let currentLog = logs[logs.length - 1];
+      currentLog.push("Boutton retour dans Recipe cliqué");
+      console.log(this.logs, currentLog);
+      localStorage.setItem("logs", JSON.stringify(this.logs));
       this.$router.go(-1);
     }
   }
